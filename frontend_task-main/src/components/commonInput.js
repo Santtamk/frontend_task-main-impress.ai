@@ -10,13 +10,17 @@ const InputHandler = ({ onSubmit, editMode = false }) => {
     e.preventDefault();
     if (!name || !email) return;
     onSubmit({ name, email });
+    setName("");
+    setEmail("");
+    console.log("working");
   };
 
   return (
-    <form className="header-box">
+    <form className="header-box" onSubmit={handleSubmit}>
       <Input
         type="text"
         placeholder="Name"
+        value={name}
         onChange={(e) => {
           setName(e.target.value);
         }}
@@ -25,12 +29,13 @@ const InputHandler = ({ onSubmit, editMode = false }) => {
       <Input
         type="email"
         placeholder="Email"
+        value={email}
         onChange={(e) => {
           setEmail(e.target.value);
         }}
         required
       />
-      <Button type="primary" onSubmit={handleSubmit}>
+      <Button type="primary" htmlType="submit">
         {!!editMode ? "Edit user" : "Add user"}
       </Button>
     </form>

@@ -1,6 +1,5 @@
-import { Table } from "antd";
+import { Button, Table } from "antd";
 import { React } from "react";
-import { DeleteOutlined } from "@ant-design/icons";
 
 const SimpleTable = ({ dataSource }) => {
   const columns = [
@@ -25,10 +24,16 @@ const SimpleTable = ({ dataSource }) => {
       render: (record) => {
         return (
           <>
-            <DeleteOutlined
-              style={{ color: "red" }}
+            <Button
+              type="primary"
               onClick={() => Delete(record)}
-            />
+              style={{ marginRight: "1rem" }}
+            >
+              Edit
+            </Button>
+            <Button type="danger" onClick={() => Delete(record)}>
+              Delete
+            </Button>
           </>
         );
       },
@@ -36,24 +41,15 @@ const SimpleTable = ({ dataSource }) => {
   ];
 
   const Delete = (record) => {
-    setData((pre) => {
-      return pre.filter((person) => person.id !== record.id);
-    });
+    // setData((pre) => {
+    //   return pre.filter((person) => person.id !== record.id);
+    // });
   };
 
   return (
     <div>
       {dataSource.length ? (
         <>
-          {/* {dataSource.map((item, index) => {
-            return (
-              <div key={index}>
-                <div>Id: {item.id}</div>
-                <div>Name: {item.name}</div>
-                <div>Email: {item.email}</div>
-              </div>
-            );
-          })} */}
           <Table dataSource={dataSource} columns={columns} pagination={false} />
         </>
       ) : (
