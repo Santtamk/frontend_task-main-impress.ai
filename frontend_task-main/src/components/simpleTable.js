@@ -1,7 +1,7 @@
-import { Button, Table } from "antd";
+import { Button, Modal, Table } from "antd";
 import { React } from "react";
 
-const SimpleTable = ({ dataSource }) => {
+const SimpleTable = ({ dataSource, deleteUser }) => {
   const columns = [
     {
       key: "id",
@@ -21,17 +21,17 @@ const SimpleTable = ({ dataSource }) => {
     {
       key: "action",
       title: "Actions",
-      render: (record) => {
+      render: (item) => {
         return (
           <>
             <Button
               type="primary"
-              onClick={() => Delete(record)}
+              // onClick={editUser}
               style={{ marginRight: "1rem" }}
             >
               Edit
             </Button>
-            <Button type="danger" onClick={() => Delete(record)}>
+            <Button type="danger" onClick={Delete}>
               Delete
             </Button>
           </>
@@ -40,10 +40,13 @@ const SimpleTable = ({ dataSource }) => {
     },
   ];
 
-  const Delete = (record) => {
-    // setData((pre) => {
-    //   return pre.filter((person) => person.id !== record.id);
-    // });
+  const Delete = (item) => {
+    Modal.confirm({
+      title: "Are you sure you want to delete this?",
+      onOk: () => {
+        deleteUser(item.id);
+      },
+    });
   };
 
   return (
