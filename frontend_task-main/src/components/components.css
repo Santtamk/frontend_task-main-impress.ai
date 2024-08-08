@@ -1,0 +1,25 @@
+
+
+#main-container-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5rem;
+}
+
+input {
+    border: gray 1px solid;
+}
+
+
+/* commonInput.js */
+.header-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* margin-top: 5rem; */
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
